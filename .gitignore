@@ -37,10 +37,11 @@
 *.hex
 
 # Debug files
-.idea
+.idea/
 cmake-build-debug/
 *.dSYM/
 libzip/
+data/
 *.su
 *.idb
 *.pdb

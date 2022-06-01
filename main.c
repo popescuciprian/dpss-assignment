@@ -10,7 +10,7 @@ int main(int argc, char **args) {
         printf("No zipfile given");
         return 1;
     }
-    FILE *output = fopen("output.txt", "w");
+    FILE *output = fopen("data/output.txt", "w");
     //not searching for '\0'. Is it linux? is it windows?
     char TARGET[50] = "This is a sample text file for OpenMPI and OpenMP.";
     char DICT[DICT_LEN] = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
