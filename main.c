@@ -13,7 +13,7 @@ int main(int argc, char **args) {
     }
     char PIN[5];
     memset(PIN, 0, sizeof(PIN));
-    char DICT[DICT_LEN] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    char DICT[DICT_LEN] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
     char TARGET[50] = "This is a sample text file for OpenMPI and OpenMP.";
 
     MPI_Init(&argc, &args);
@@ -48,10 +48,11 @@ int main(int argc, char **args) {
                         if (zipError->sys_err == 0 && zipError->zip_err == 0 &&
                             strncmp(BUFFER, TARGET, sizeof(TARGET)) == 0) {
                             unzipStatus = 0;
-                            printf("Rank[%d] out of world_size[%d] found message[%s] with pin[%s]\n", world_rank,
+                            printf("Rank [%d] out of world_size [%d] found message [%s] with pin [%s]\n", world_rank,
                                    world_size,
                                    BUFFER, PIN);
-                            MPI_Abort(MPI_COMM_WORLD, 0);
+                            if (world_size > 1)
+                                MPI_Abort(MPI_COMM_WORLD, 0);
                         }
                         zip_fclose(zippedFile);
                     }
@@ -59,7 +60,8 @@ int main(int argc, char **args) {
             }
         }
     }
-    printf("Rank[%d] out of world_size[%d] found nothing...\n", world_rank, world_size);
+    if (unzipStatus != 0)
+        printf("Rank [%d] out of world_size [%d] found nothing...\n", world_rank, world_size);
     MPI_Finalize();
     zip_close(archive);
     return 0;
