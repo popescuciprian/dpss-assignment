@@ -1,0 +1,2 @@
+aws1 slots=1
+aws2 slots=1
