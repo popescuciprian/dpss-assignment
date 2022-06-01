@@ -37,6 +37,8 @@
 *.hex
 
 # Debug files
+.idea
+cmake-build-debug/
 *.dSYM/
 *.su
 *.idb
