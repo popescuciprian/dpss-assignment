@@ -12,8 +12,9 @@ int main(int argc, char **args) {
         return 0;
     }
     char PIN[5];
-    char DICT[DICT_LEN] = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-
+    memset(PIN, 0, sizeof(PIN));
+    char DICT[DICT_LEN] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    char TARGET[50] = "This is a sample text file for OpenMPI and OpenMP.";
 
     MPI_Init(&argc, &args);
     int world_size;
@@ -26,10 +27,7 @@ int main(int argc, char **args) {
         printf("ERank[%d] can't open zip\n", world_rank);
         return 0;
     }
-
-    char TARGET[50] = "This is a sample text file for OpenMPI and OpenMP.";
     char BUFFER[sizeof(TARGET)];
-    memset(PIN, 0, sizeof(PIN));
     memset(BUFFER, 0, sizeof(BUFFER));
 
     zip_error_t *zipError;
@@ -62,8 +60,7 @@ int main(int argc, char **args) {
         }
     }
     printf("Rank[%d] out of world_size[%d] found nothing...\n", world_rank, world_size);
-//    MPI_Finalize();
+    MPI_Finalize();
     zip_close(archive);
-
     return 0;
 }
