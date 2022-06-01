@@ -5,7 +5,6 @@ Zip password "cracker" using [libzip](https://libzip.org/), knowing the password
 ```shell
 sudo chmod +x *.sh
 sudo ./install-packages.sh
-sudo ./install.sh
 
 ./compile-n-run.sh
 ```
