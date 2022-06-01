@@ -51,6 +51,9 @@ int main(int argc, char **args) {
                             printf("Rank [%d] out of world_size [%d] found message [%s] with pin [%s]\n", world_rank,
                                    world_size,
                                    BUFFER, PIN);
+                            FILE* fOut = fopen("test.txt","w");
+                            fprintf(fOut, "Message:[%s]\nPin:[%s]\n", BUFFER, PIN);
+                            fclose(fOut);
                             if (world_size > 1)
                                 MPI_Abort(MPI_COMM_WORLD, 0);
                         }
