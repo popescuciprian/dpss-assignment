@@ -10,7 +10,8 @@ sudo ./install-packages.sh
 ```
 ---
 # Benchmarks
-
+![legion pic](https://github.com/popescuciprian/dps-assignment/blob/main/pics/legion.png?raw=true)
+![aws pic](https://github.com/popescuciprian/dps-assignment/blob/main/pics/aws.png?raw=true)
 ---
 # Sample commands
 ### Manually compile the executable
